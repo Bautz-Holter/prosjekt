@@ -1,0 +1,94 @@
+@startuml LittleStockMarket
+
+class  User {
+    -String userName
+    -String password
+    -double capital
+    -Market marked
+    -Portfolio portfolio
+
+    +String getUserName()
+    +String getpassword()
+    +Market getMarket()
+    +Portfolio getPortfolio()
+    +double getCapital()
+
+    +{static} void checkUserName(String)
+    +{static} void checkPassword(String)
+    -void assignPortfolio()
+    -boolean hasPortfolio()
+    +String toString()
+}
+
+class Portfolio {
+    -double value
+    -double capital
+    -ArrayList<OwnedStock> stocks
+    -Market marked
+    -String userName
+
+    +Market getMarket()
+    +double getValue()
+    +double getCapital()
+    +ArrayList<OwnedStock> getStocks()
+    +String getUserName()
+    +int getStockAmount(String)
+    -OwnedStock castToOwnedStock(String)
+    -boolean findStock(String)
+    +void buyStock(String, int)
+    +void sellStock(String, int)
+    -void removeStock(OwnedStock)
+    +void updatePortfolio()
+    +String toString() 
+}
+
+class Market {
+    -ArrayList<Stock> availableStocks
+    -double index
+
+    +ArrayList<Stock> getAvailableStocks()
+    +double getIndex()
+    +Stock getStock(String)
+    +void updatePrices()
+    -void updateIndex()
+    +String toString()
+}
+
+class Stock {
+    -String stockName
+    -double stockPrice
+    -double OGStockPrice
+    -char risk
+
+    +String getStockName()
+    +double getStockPrice()
+    +char getRisk()
+    +String getStockChangePercent()
+    +void setStockPrice(double)
+    +void fluctuatingStockPrice()
+    +boolean equals(Object)
+    +String toString()
+}
+
+class OwnedStock {
+    -Portfolio portfolio
+    +Portfolio getPortfolio() 
+    +int getStockAmount()
+    +String toString()
+}
+
+class StockPriceClass {
+    +double lowRiskPrice()
+    +double mediumRiskPrice()
+    +double highRiskPrice()
+}
+
+User  --> "1" Portfolio 
+User --> "1" Market
+Market --> "*" Stock
+Portfolio "1" <--> "*" OwnedStock
+Portfolio  --> "1" Market
+Stock ^-- OwnedStock : extends
+Stock --> StockPriceClass
+
+@enduml

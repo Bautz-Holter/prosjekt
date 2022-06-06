@@ -1,0 +1,9 @@
+Online,10.0,L
+Thilde,10.0,H
+Bindeleddet,15.0,H
+Stoh,5.0,M
+Elektra,8.5,H
+Janus,9.0,L
+Abakus,20.0,M
+Emil,12.5,H
+TPorten,4.0,H
